@@ -1,0 +1,22 @@
+name: immich-distribution-node
+base: core20
+version: 18.16.0-dist1
+summary: Node packaged for Immich Distribution
+description: |
+  Node packaged for Immich Distribution, this is not intended to be consumed directly.
+architectures:
+  - amd64
+
+grade: stable
+confinement: strict
+
+parts:
+  node:
+    plugin: nil
+    override-build: |
+      if [ ! -f "$SNAPCRAFT_PART_INSTALL/bin/node" ]; then
+        curl -s https://nodejs.org/dist/v18.16.0/node-v18.16.0-linux-x64.tar.xz \
+        | tar xJf - -C "$SNAPCRAFT_PART_INSTALL" --no-same-owner --strip-components=1
+      fi
+    build-packages:
+      - curl
