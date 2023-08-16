@@ -20,3 +20,10 @@ parts:
       fi
     build-packages:
       - curl
+    organize: 
+      bin: usr/bin
+      include: usr/include
+      lib: usr/lib
+      share: usr/share
+    stage:
+      - usr
